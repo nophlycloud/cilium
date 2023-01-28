@@ -33,3 +33,23 @@ rules:
     path: "/v1/request-landing"
 ```
 
+4. Entire policy sample:
+```
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: rule1
+spec:
+  endpointSelector:
+    matchLabels:
+      org: empire
+      class: deathstar
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            org: empire
+            class: tiefighter
+      toPorts:
+        - ports:
+            - port: "80"
+```
