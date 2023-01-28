@@ -23,3 +23,13 @@ spec:
       - port: "80"
         protocol: TCP
 ```
+
+3. Create rule for specific endpoint:
+
+```
+rules:
+  http:
+  - method: "POST"
+    path: "/v1/request-landing"
+```
+
