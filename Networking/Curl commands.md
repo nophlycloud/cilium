@@ -4,3 +4,5 @@
 ```
 kubectl exec tiefighter -- curl -s -XPUT deathstar.default.svc.cluster.local/v1/exhaust-port
 ```
+
+Semgrep test
