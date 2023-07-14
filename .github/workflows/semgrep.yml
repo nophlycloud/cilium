@@ -21,6 +21,7 @@ jobs:
     # If you are self-hosting, change the following `runs-on` value: 
     runs-on: ubuntu-latest
     permissions:
+      contents: write
       security-events: write
 
     container:
