@@ -1,10 +1,6 @@
 # Name of this GitHub Actions workflow.
 name: Semgrep
 
-permissions:
-  contents: write
-  security-events: write
-
 on:
   # Scan changed files in PRs (diff-aware scanning):
   pull_request: {}
@@ -21,6 +17,9 @@ on:
 jobs:
   semgrep:
     # User definable name of this GitHub Actions job.
+    permissions:
+      contents: write
+      security-events: write
     name: semgrep/ci 
     # If you are self-hosting, change the following `runs-on` value: 
     runs-on: ubuntu-latest
