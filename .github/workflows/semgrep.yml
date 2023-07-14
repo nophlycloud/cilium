@@ -1,9 +1,6 @@
 # Name of this GitHub Actions workflow.
 name: Semgrep
 
-permissions:
-  contents: write
-
 on:
   # Scan changed files in PRs (diff-aware scanning):
   pull_request: {}
@@ -23,6 +20,8 @@ jobs:
     name: semgrep/ci 
     # If you are self-hosting, change the following `runs-on` value: 
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     container:
       # A Docker image with Semgrep installed. Do not change this.
