@@ -1,6 +1,10 @@
 # Name of this GitHub Actions workflow.
 name: Semgrep
 
+permissions:
+  contents: write
+  security-events: write
+
 on:
   # Scan changed files in PRs (diff-aware scanning):
   pull_request: {}
@@ -38,9 +42,6 @@ jobs:
           # Generate a token from Semgrep Cloud Platform > Settings
           # and add it to your GitHub secrets.
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-            permissions:
-              contents: write
-              security-events: write
 
       - name: Upload SARIF file for GitHub Advanced Security Dashboard
         uses: github/codeql-action/upload-sarif@v2
