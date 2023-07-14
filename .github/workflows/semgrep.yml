@@ -1,6 +1,9 @@
 # Name of this GitHub Actions workflow.
 name: Semgrep
 
+permissions:
+  contents: write
+
 on:
   # Scan changed files in PRs (diff-aware scanning):
   pull_request: {}
@@ -13,8 +16,6 @@ on:
   schedule:
     - cron: '20 17 * * *' # Sets Semgrep to scan every day at 17:20 UTC.
     # It is recommended to change the schedule to a random time.
-permissions:
-  contents: write
   
 jobs:
   semgrep:
