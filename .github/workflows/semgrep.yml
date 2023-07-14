@@ -21,7 +21,7 @@ jobs:
     # If you are self-hosting, change the following `runs-on` value: 
     runs-on: ubuntu-latest
     permissions:
-      security-events: read|write
+      security-events: write
 
     container:
       # A Docker image with Semgrep installed. Do not change this.
