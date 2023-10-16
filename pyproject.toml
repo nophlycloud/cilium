@@ -1,0 +1,98 @@
+[tool.poetry]
+name = "insights-api"
+description = "Insights REST API Service"
+license = "Proprietary"
+repository = "https://github.com/zephyr-ai/insights-api"
+authors = ["Zephyr AI"]
+
+packages = [
+    { include = "insights" },
+]
+
+# Placeholder. Versioning is managed using git tags.
+version = "0.0.0"
+
+[[tool.poetry.source]]
+name = "private"
+url = "https://pypi-477794294201.d.codeartifact.us-east-1.amazonaws.com/pypi/private/simple"
+priority = "default"
+
+[[tool.poetry.source]]
+name = "public"
+url = "https://pypi-477794294201.d.codeartifact.us-east-1.amazonaws.com/pypi/public/simple"
+priority = "supplemental"
+
+[build-system]
+requires = ["poetry-core>=1.0.4"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe]
+include = "tasks.toml"
+
+[tool.black]
+# The default maximum line length for black is 88 characters, but we opt to use 120 character lines.f
+# (Everyone has a big monitor these days, yes?)
+line-length = 120
+
+[tool.isort]
+# A few of the default settings conflict with black, so the profile = "black" setting makes isort defer to black formatting rules.
+profile = "black"
+# The default line length for isort is 80 characters. We set it to 120 characters to match the settings for black.
+line_length = 120
+# By default, isort keeps import as statements separate from regular import statements. The combine_as_imports = true
+# setting combines them all into a single statement.
+combine_as_imports = true
+# Without any additional information, isort has no way of distinguishing internally published packages
+# (e.g. lib-dagster) from true third-party libraries (e.g. numpy). As such, they all get grouped together under the
+# THIRDPARTY import section. The sections and known_zephyr settings allow us to keep internally published packages
+# visually distinct from other third-party libraries.
+sections = ["FUTURE","STDLIB","THIRDPARTY","ZEPHYR","FIRSTPARTY","LOCALFOLDER"]
+# please update this as you add new Zephyr-specific dependencies!
+known_zephyr = ["kona", "lib-config", "lib-dagster", "lib-grpc", "lib-mlflow"]
+known_first_party = ["astrovan", "cardea", "healthterm", "proto", "zephyr"]
+skip = ["cdktf"]
+
+[tool.poetry.dependencies]
+python = "~3.9"
+lib-postgres = "^0.3.2"
+fastapi = "0.97.0"
+uvicorn = {extras = ["standard"], version = "^0.19.0"}
+pandas = "^2"
+pyarrow = "^12.0.0"
+pydantic = "^1.9.0"
+lib-config = "^0.5.0"
+fsspec = "^2023.6.0"
+s3fs = "^2023.6.0"
+starlette-prometheus = "^0.9.0"
+lib-dagster = {version = "^3.4", extras=["k8s", "aws", "slack"]}
+psycopg = { version = "^3.1.9", extras = ["binary"] }
+dagit = "^1.4.4"
+types-psycopg2 = "^2.9.21.11"
+greenlet = "^2.0.2"
+cloudpathlib = "^0.15.1"
+locust = "^2.16.1"
+gevent = "^23.7.0"
+# NOTE: 0.14.5 is the latest version that uses `typeguard` v2; newer versions use `typeguard` v3+ which is not
+# supported by `lib-projen` (via `projen` via `jsii`). It looks like `jsii` might be updated soon though
+# https://github.com/aws/jsii/pull/4233
+# NOTE: I tried to use the `mypy` integration but it failed when I tried
+# https://pandera.readthedocs.io/en/stable/mypy_integration.html
+pandera = "v0.14.5"
+polars = "^0.19.2"
+urllib3 = "1.26.17"
+deprecation = "^2.1.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "22.12.0"
+httpx = "^0.24.0"
+isort = "5.12.0"
+mypy = "1.3.0"
+poethepoet = "^0.20"
+pytest = "^7.3"
+pytest-aio = "^1.5.0"
+pytest-cov = "^4.1.0"
+testcontainers = "^3.4.2"
+pytest-asyncio = "^0.21.0"
+ruff = "^0"
+#lib-projen = "0.0.29"
+lib-projen = "0.0.31.dev1407"
