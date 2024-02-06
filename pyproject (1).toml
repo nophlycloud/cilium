@@ -1,0 +1,79 @@
+[tool.poetry]
+name = "mango"
+description = "Bioinformatics data pipeline and related services"
+license = "Proprietary"
+repository = "https://github.com/zephyr-ai/mango"
+authors = ["Zephyr AI"]
+
+# Placeholder. Versioning is managed using git tags.
+version = "0.0.0"
+
+[[tool.poetry.source]]
+name = "private"
+url = "https://pypi-477794294201.d.codeartifact.us-east-1.amazonaws.com/pypi/private/simple"
+priority = "default"
+
+[[tool.poetry.source]]
+name = "public"
+url = "https://pypi-477794294201.d.codeartifact.us-east-1.amazonaws.com/pypi/public/simple"
+priority = "supplemental"
+
+[build-system]
+requires = ["poetry-core>=1.0.4"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe]
+include = "tasks.toml"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+known_third_party = ["dagster"]
+
+[tool.pytest.ini_options]
+log_cli = true
+markers = [
+    "shell: mark test as requiring shell commands",
+]
+
+[tool.poetry.dependencies]
+python = "~3.9"
+boto3 = "^1.24.32"
+boto3-type-annotations = "^0.3.1"
+lib-dagster = { version="v3.5.1", extras=["aws", "k8s", "pandas", "pandas-parquet"] }
+pysam = "^0.18.0"
+pandas = "^1.5"
+filelock = "^3.6.0"
+s3fs = "^2023.1.0"
+lib-config = "^0.5.3"
+cloudpathlib = "^0.15"
+requests = "^2.30.0"
+liftover = "^1.1.16"
+plotly = "^5.15.0"
+pydantic = "^1" # pinned due to dagster requirement that is not defined.
+kaleido = "0.2.1"
+bioinformatics-tools = "v0.0.1"
+# TODO: https://zephyrai.atlassian.net/browse/ODATA-739 - remove version pin once complete
+numpy = "1.21.6"
+
+[tool.poetry.dev-dependencies]
+lib-projen = "0.0.29"
+poethepoet = "^0"
+dagit = "^1.1"
+types-filelock = "^3.2.5"
+docker = "^5.0.3"
+
+# [tool.poetry.group.test.dependencies]
+black = "^23"
+coverage = "^6.0.2"
+isort = "^5"
+pytest = "^6.2"
+pytest-asyncio = "^0.18.3"
+mypy = "^1.5"
+moto = {extras = ["s3"], version = "^3.1.10"}
+responses = "^0.23.1"
+ruff = "^v0.0.285"
+types-requests="^2"
