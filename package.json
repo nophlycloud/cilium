@@ -1,12 +1,17 @@
 {
   "name": "cilium",
   "version": "1.0.0",
-  "description": "### Requisites",
+  "description": "A sample Node.js project with additional dependencies",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "axios": "^0.24.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.12",
+    "dotenv": "^10.0.0"
+  }
 }
