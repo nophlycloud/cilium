@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "5.5.1",
+          "version": "5.5.1"
+        }
+      },
+      {
+        "package": "SwiftyJSON",
+        "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON.git",
+        "state": {
+          "branch": null,
+          "revision": "5.0.0",
+          "version": "5.0.0"
+        }
+      }
+    ],
+    "supportsPackageReferences": true
+  }
+}
